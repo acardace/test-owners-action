@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Run Owners Bot
-        uses: acardace/owners-bot-action@main
+        uses: acardace/owners-bot-action@v1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owners-file: "OWNERS"
