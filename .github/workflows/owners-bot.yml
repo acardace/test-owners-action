@@ -3,10 +3,12 @@ name: Owners Bot
 on:
   issue_comment:
     types: [created]
+  pull_request:
+    types: [labeled, unlabeled]
 
 jobs:
   handle-comment:
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event_name == 'pull_request' || github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -17,7 +19,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Run Owners Bot
-        uses: acardace/owners-bot-action@v1.0
+        uses: acardace/owners-bot-action@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           owners-file: "OWNERS"
